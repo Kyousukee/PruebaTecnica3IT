@@ -1,0 +1,26 @@
+body{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+#div1 {
+    overflow:scroll;
+    overflow-x:hidden;
+    height:500px;
+}
+#div1 table {
+   background-color:lightgray;
+}
+
+.containerStyle{
+    display: flex;justify-content: center !important;
+}
+
+.ancho{
+    width: 100%;
+}
+
+
+
+.fontsize{
+    font-size: 22px;
+}
