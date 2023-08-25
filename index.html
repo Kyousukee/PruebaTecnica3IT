@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="AngularJSIndex" ng-controller="AngularJSIndexController as angCtrl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    
+
+    <script src="js/app.js"></script>
+    <link href="style/style.css" rel="stylesheet">
+    <title>Prueba Tecnica 3IT</title>
+</head>
+<body class="m-0 vh-100 row justify-content-center align-items-center">
+    
+    <div class="container containerStyle">        
+      <div class="card" style="width: 50%;text-align: center;">
+          <h3 class="page-header"><i class="fa fa fa-bars"></i> Indicadores</h3>
+          <div class="card-body">
+              <div class="btn-group dropend m-1 ancho" ng-repeat="Ind in LstInd track by $index">
+                  <button class="btn btn-primary dropdown-toggle ancho" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{Ind}}
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_detalle" ng-click="angCtrl.cargarGrafico(Ind)">Detalle</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_listado" ng-click="angCtrl.ListadoValores(Ind)">Listado</a></li>
+                  </ul>
+                </div>                                  
+            </div>            
+          </div>
+      </div>
+
+      <!-- Modal Listado -->
+      
+        <div class="modal fade" id="modal_listado" role="document">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title ">Listado de Valores</h4>
+              </div>
+              <div class="modal-body">
+                <section class="panel" id="div1">
+                    <h4 style="text-align: center;">{{detValor}}</h4>
+                  <table class=" table table-dark table-striped-columns " id="example" data-toggle="table">
+                    <thead>
+                      <tr>
+                        <th>Fecha</th>
+                        <th>Valor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="val in LstVal track by (val.Fecha)">
+                        <td>{{val.Fecha}}</td>
+                        <td>{{val.Valor}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </div>
+    
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      <!-- Fin Modal Listado -->
+
+      <!-- Modal Detalle -->
+      <div class="container">
+        <div class="modal fade" id="modal_detalle" role="document">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Detalle de Moneda</h4>
+              </div>
+              <div class="modal-body ">
+                <section class="panel row">
+                <!-- <h4 style="text-align: center;">{{detValor}}</h4> -->
+                <div class='col-md-6'>
+                <canvas id="myChart"></canvas>
+                </div>
+                <div class='col-md-6 fontsize' style="text-align: center;">
+                  <span ><b>$ {{detVelorPrecio}}</b></span>
+                  <table class="mt-4 ancho">
+                      <tr>
+                        <td ><span ><b>Nombre</b></span></td>
+                        <td>{{detValor}}</td>
+                      </tr>
+                      <tr>
+                        <td><span ><b>Fecha</b></span></td>
+                        <td>{{detVelorFecha}}</td>
+                      </tr>
+                      <tr>
+                        <td><span ><b>Unidad</b></span></td>
+                        <td>Peso</td>
+                      </tr>
+                    
+                  </table>
+                </div>
+                  
+                </section>
+              </div>
+    
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Modal Detalle -->
+</body>
+
+
+</html>
